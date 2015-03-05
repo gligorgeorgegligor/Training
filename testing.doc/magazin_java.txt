@@ -1,0 +1,104 @@
+public class ProdusMain {
+	public static void main(String [] args){
+			
+			Produs[] sirProduse = new Produs[5];
+			
+			sirProduse[0] = new Produs("caise", 65, 6.5);
+			sirProduse[1]= new Produs("mere", 0, 2.5);
+			sirProduse[2] = new Produs("capsuni", 0, 8.5);
+			sirProduse[3] = new Produs("pere", 53, 11.2);
+			sirProduse[4] = new Produs("banane", 2, 3.6);
+			
+			
+			for (int i = 0; i < 5; i++){
+				//System.out.println(sirProduse[i]);
+				
+			}
+			for (int i = 0; i < 5; i++){
+				
+				//System.out.println(sirProduse[i].val());
+				//System.out.println(sirProduse[i].tva());
+				//System.out.println(sirProduse[i].disponibil());
+			}
+			sirProduse[4].setName("mango");
+			
+			System.out.println(sirProduse[4]);
+			/*Produs produs1 = new Produs("caise", 65, 6.5);
+			Produs produs2 = new Produs("mere", 0, 2.5);
+			Produs produs3 = new Produs("capsuni", 0, 8.5);
+			Produs produs4 = new Produs("pere", 53, 11.2);
+			Produs produs5 = new Produs("banane", 2, 3.6);*/
+			
+			/*System.out.println(produs1.printProdus());
+			produs1.setName("pere");
+			System.out.println(produs1.printProdus());*/
+	}
+}
+
+
+
+
+
+
+
+public class Produs {
+	 private String name;
+	 private int cantitate;
+	 private double pret;
+
+
+	public Produs (String names, int cantitate, double preturi){
+		this.name = names;
+		this.cantitate = cantitate;
+		this.pret = preturi;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getCantitate() {
+		return cantitate;
+	}
+
+
+	public void setCantitate(int cantitate) {
+		this.cantitate = cantitate;
+	}
+
+
+	public double getPret() {
+		return pret;
+	}
+
+
+	public void setPret(double pret) {
+		this.pret = pret;
+	}
+	
+	public String toString(){
+		return name+"\t"+cantitate+"\t"+pret;
+	}
+	public double tva(){
+		 return (0.24 * pret);
+	}
+	public boolean disponibil(){
+		if (cantitate == 0)
+			return false;
+		else
+			return true;
+	}
+	public double val(){
+		return (cantitate * pret);
+		
+	}
+}
+
+	

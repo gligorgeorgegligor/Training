@@ -1,0 +1,321 @@
+The Java Environment
+
+Search
+Home
+All
+Files
+New
+Rename
+Edit
+History
+JDK vs JRE
+JRE: Java Runtime Environment. It is basically the Java Virtual Machine where your Java programs run on. It also includes browser plugins for Applet execution.
+
+JDK: It's the full featured Software Development Kit for Java, including JRE, and the compilers and tools (like JavaDoc, and Java Debugger) to create and compile programs.
+
+Usually, when you only care about running Java programs on your browser or computer you will only install JRE. It's all you need. On the other hand, if you are planning to do some Java programming, you will also need JDK.
+
+Sometimes, even though you are not planning to do any Java Development on a computer, you still need the JDK installed. For example, if you are deploying a WebApp with JSP, you are technically just running Java Programs inside the application server. Why would you need JDK then? Because application server will convert JSP into Servlets and use JDK to compile the servlets.
+
+Bytecode and the Java Virtual Machine
+Bytecode is a highly optimized set of instructions designed to be executed by the Java run-time system (interpreter) which is called the Java Virtual Machine (JVM). This provides greater level of flexibility for the developers to implement the logic specific to JVM rather to any platform or device.
+
+Bytecode generated after compiling in Mac, Windows, Linux or Unix will be the same which makes Bytecode platform independent. So, Bytecode compiled in one platform can be executed into another platform.
+
+A Java virtual machine (JVM), is an implementation of the Java Virtual Machine Specification, interprets compiled Java binary code (called bytecode) for a computer's processor (or "hardware platform") so that it can perform a Java program's instructions. Java was designed to allow application programs to be built in order be run on any platform without having to be rewritten or recompiled by the programmer for each separate platform. A Java virtual machine makes this possible because it is aware of the specific instruction lengths and other particularities of the platform.
+
+The Java Virtual Machine Specification defines an abstract -- rather than a real -- machine or processor. The Specification specifies an instruction set, a set of registers, a stack, a "garbage heap," and a method area. Once a Java virtual machine has been implemented for a given platform, any Java program (which, after compilation, is called bytecode) can run on that platform. A Java virtual machine can either interpret the bytecode one instruction at a time (mapping it to a real processor instruction) or the bytecode can be compiled further for the real processor using what is called a just-in-time compiler.
+
+Java platforms
+There are four platforms of the Java programming language:
+
+Java Platform, Standard Edition (Java SE)
+Java Platform, Enterprise Edition (Java EE)
+Java Platform, Micro Edition (Java ME)
+JavaFX
+Java SE
+
+When most people think of the Java programming language, they think of the Java SE API. Java SE's API provides the core functionality of the Java programming language. It defines everything from the basic types and objects of the Java programming language to high-level classes that are used for networking, security, database access, graphical user interface (GUI) development, and XML parsing.
+
+In addition to the core API, the Java SE platform consists of a virtual machine, development tools, deployment technologies, and other class libraries and toolkits commonly used in Java technology applications.
+
+Java EE
+
+The Java EE platform is built on top of the Java SE platform. The Java EE platform provides an API and runtime environment for developing and running large-scale, multi-tiered, scalable, reliable, and secure network applications.
+
+Java ME
+
+The Java ME platform provides an API and a small-footprint virtual machine for running Java programming language applications on small devices, like mobile phones. The API is a subset of the Java SE API, along with special class libraries useful for small device application development. Java ME applications are often clients of Java EE platform services.
+
+JavaFX
+
+JavaFX is a platform for creating rich internet applications using a lightweight user-interface API. JavaFX applications use hardware-accelerated graphics and media engines to take advantage of higher-performance clients and a modern look-and-feel as well as high-level APIs for connecting to networked data sources. JavaFX applications may be clients of Java EE platform services.
+
+Java application packaging and deployment
+The magic JAR
+
+The Java™ Archive (JAR) file format enables you to bundle multiple files into a single archive file. Typically a JAR file contains the class files and auxiliary resources associated with applets and applications.
+
+.war files: The war file contains the web application that can be deployed on the any servlet/jsp container. The .war file contains jsp, html, javascript and other files for necessary for the development of web applications.
+
+Containers
+
+The basic idea of Servlet container or Java application server is using Java to dynamically generate the web page on the server side. So the servlet container is essentially a part of a web server that interacts with the servlets. It provides an environment for running Java code in a web server.
+
+How Servlet containers and web servers process a request
+
+1.Web server receives a HTTP request. 2.Web server forwards the request to the servlet container. 3.The servlet is dynamically retrieved and loaded into the address space of the container, if it is not in the container. 4.The container invokes the init() method of the servlet for initialization(invoked once when the servlet is loaded first time). 5.The container invokes the service() method of the servlet to process the HTTP request, i.e., read data in the request and formulate a response. The servlet remains in the container’s address space and can process other HTTP requests. 6.Web server returns the dynamically generated results to the correct location.
+
+The role of the JVM
+
+Using servlets allows the JVM to handle each request within a separate Java thread, and this is one of the key advantages of the Servlet container. Each servlet is a Java class with special elements responding to HTTP requests. The main function of Servlet containers is to forward requests to the correct servlet for processing, and return the dynamically generated results to the correct location after the JVM has processed them. In most cases servlet containers run in a single JVM, but there are solutions when containers need multiple JVMs.
+
+
+
+
+JAVA
+
+
+
+
+
+
+The Java language assumes that you want to do only object-oriented programming. This means that before you can begin you must shift your mindset into an object-oriented world (unless it’s already there). The benefit of this initial effort is the ability to program in a language that is simpler to learn and to use than many other OOP languages. In this section you’ll see the basic components of a Java program and learn that (almost) everything in Java is an object.
+
+Creating new data types: class
+
+If everything is an object, what determines how a particular class of object looks and behaves? You might expect there to be a keyword called “type,” and that certainly would have made sense. Historically, however, most object oriented languages have used the keyword class to mean “I’m about to tell you what a new type of object looks like.” The class keyword is followed by the name of the new type. For example:
+
+class ATypeName { /* Class body goes here */ }
+This introduces a new type, although the class body consists only of a comment, so there is not too much that you can do with it. However, you can create an object of this type using new:
+
+ATypeName a = new ATypeName();
+Fields and methods
+
+When you define a class (and all you do in Java is define classes, make objects of those classes, and send messages to those objects), you can put two types of elements in your class: fields (sometimes called data members), and methods (sometimes called member functions). A field is an object of any type that you can talk to via its reference, or a primitive type. If it is a reference to an object, you must initialize that reference to connect it to an actual object (using new, as seen earlier).
+
+Here is an example of a class with some fields:
+
+class DataOnly {
+int i; 
+double d; 
+boolean b; 
+}
+This class doesn’t do anything except hold data. But you can create an object like this:
+
+DataOnly data = new DataOnly();
+When a primitive data type is a member of a class, it is guaranteed to get a default value if you do not initialize it.
+
+Methods, arguments, and return values
+
+In many languages (like C and C++), the term function is used to describe a named subroutine. The term that is more commonly used in Java is method, as in “a way to do something.”
+
+Methods in Java determine the messages an object can receive. The fundamental parts of a method are the name, the arguments, the return type, and the body. Here is the basic form:
+
+ReturnType methodName( /* Argument list */ ) {
+/* Method body */ 
+}
+The return type describes the value that comes back from the method after you call it. The argument list gives the types and names for the information that you want to pass into the method. The method name and argument list (which is called the signature of the method) uniquely identify that method. Methods in Java can be created only as part of a class. A method can be called only for an object,3 and that object must be able to perform that method call. If you try to call the wrong method for an object, you’ll get an error message at compile time. You call a method for an object by naming the object followed by a period (dot), followed by the name of the method and its argument list, like this:
+
+objectName.methodName(arg1, arg2, arg3);
+For example, suppose you have a method f( ) that takes no arguments and returns a value of type int. Then, if you have an object called a for which f( ) can be called, you can say this:
+
+int x = a.f();
+Building a Java program
+There are several other issues you must understand before seeing your first Java program.
+
+Name visibility
+
+A problem in any programming language is the control of names. If you use a name in one module of the program, and another programmer uses the same name in another module, how do you distinguish one name from another and prevent the two names from “clashing”?
+
+Java was able to avoid all of this by taking a fresh approach. To produce an unambiguous name for a library, the Java creators want you to use your Internet domain name in reverse since domain names are guaranteed to be unique. After your reversed domain name, the dots are intended to represent subdirectories.
+
+Ex:
+
+com.pitechplus.mypackage
+Using other components
+
+Whenever you want to use a predefined class in your program, the compiler must know how to locate it. Of course, the class might already exist in the same source-code file that it’s being called from. In that case, you simply use the class—even if the class doesn’t get defined until later in the file
+
+To solve this problem, you must eliminate all potential ambiguities. This is accomplished by telling the Java compiler exactly what classes you want by using the import keyword. import tells the compiler to bring in a package, which is a library of classes. (In other languages, a library could consist of functions and data as well as classes, but remember that all code in Java must be written inside a class.)
+
+Most of the time you’ll be using components from the standard Java libraries that come with your compiler. With these, you don’t need to worry about long, reversed domain names; you just say, for example:
+
+import java.util.ArrayList;
+However, util contains a number of classes, and you might want to use several of them without declaring them all explicitly. This is easily accomplished by using ‘*’ to indicate a wild card:
+
+import java.util.*;
+Your first Java program
+
+Finally, here’s the first complete program. It starts by printing a string, and then the date, using the Date class from the Java standard library.
+
+// HelloDate.java import java.util.*; public class HelloDate {
+public static void main(String[] args) { 
+  System.out.println("Hello, it’s: "); 
+  System.out.println(new Date()); 
+  } 
+}
+Access Control
+package: the library unit
+
+A package contains a group of classes, organized together under a single namespace. For example, there’s a utility library that’s part of the standard Java distribution, organized under the namespace java.util. One of the classes in java.util is called ArrayList. One way to use an ArrayList is to specify the full name java.util.ArrayList.
+
+public class FullQualification {
+  public static void main(String[] args) { 
+    java.util.ArrayList list = new java.util.ArrayList(); 
+  } 
+}
+This rapidly becomes tedious, so you’ll probably want to use the import keyword instead. If you want to import a single class, you can name that class in the import statement:
+import java.util.ArrayList; 
+
+public class SingleImport {
+    public static void main(String[] args) { 
+    ArrayList list = new java.util.ArrayList(); 
+  } 
+}
+Now you can use ArrayList with no qualification. However, none of the other classes in java.util are available. To import everything, you simply use the ‘*’ :
+import java.util.*;
+Code organization
+
+When you compile a .java file, you get an output file for each class in the .java file. Each output file has the name of a class in the .java file, but with an extension of .class. Thus you can end up with quite a few .class files from a small number of .java files. If you’ve programmed with a compiled language, you might be used to the compiler spitting out an intermediate form (usually an “obj” file) that is then packaged together with others of its kind using a linker (to create an executable file) or a librarian (to create a library). That’s not how Java works. A working program is a bunch of .class files, which can be packaged and compressed into a Java ARchive (JAR) file (using Java’s jar archiver). The Java interpreter is responsible for finding, loading, and interpreting2 these files.
+
+A library is a group of these class files. Each source file usually has a public class and any number of non-public classes, so there’s one public component for each source file. If you want to say that all these components (each in its own separate .java and .class files) belong together, that’s where the package keyword comes in. If you use a package statement, it must appear as the first non-comment in the file. When you say:
+
+package access;
+
+Java access specifiers
+
+The Java access specifiers public, protected, and private are placed in front of each definition for each member in your class, whether it’s a field or a method. Each access specifier only controls the access for that particular definition. If you don’t provide an access specifier, it means “package access.” So one way or another, everything has some kind of access control.
+
+Package access
+
+The default access has no keyword, but it is commonly referred to as package access (and sometimes “friendly”). It means that all the other classes in the current package have access to that member, but to all the classes outside of this package, the member appears to be private. Since a compilation unit—a file—can belong only to a single package, all the classes within a single compilation unit are automatically available to each other via package access.
+
+public: interface access
+
+When you use the public keyword, it means that the member declaration that immediately follows public is available to everyone, in particular to the client programmer who uses the library. Suppose you define a package dessert containing the following compilation unit:
+
+package access.dessert; 
+
+public class Cookie {
+
+  public Cookie() { 
+    System.out.println("Cookie constructor"); 
+  } 
+  void bite() { 
+    System.out.println("bite"); 
+  } 
+}
+private: you can’t touch that!
+
+The private keyword means that no one can access that member except the class that contains that member, inside methods of that class. Other classes in the same package cannot access private members, so it’s as if you’re even insulating the class against yourself. On the other hand, it’s not unlikely that a package might be created by several people collaborating together, so private allows you to freely change that member without concern that it will affect another class in the same package.
+
+protected: inheritance access
+
+The protected keyword deals with a concept called inheritance, which takes an existing class— which we refer to as the base class—and adds new members to that class without touching the existing class. You can also change the behavior of existing members of the class.
+
+In an ideal world, the private keyword would be enough. In real projects, there are times when you want to make something hidden from the world at large and yet allow access for members of derived classes. The protected keyword is a nod to pragmatism. It says “This is private as far as the class user is concerned, but available to anyone who inherits from this class or anyone else in the same package.” (In Java, protected also provides package access.) Although it’s possible to create protected fields, the best approach is to leave the fields private; you should always preserve your right to change the underlying implementation.
+
+
+
+
+JAVA EXERCITII
+
+
+
+
+java exercises
+
+Search
+Home
+All
+Files
+New
+Rename
+Edit
+History
+Environment setup ##
+Java 7 JDK : http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
+
+Eclipse EE : https://eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2
+
+Day 1
+Check you have Java installed on your machine.
+Install Eclipse.
+Create a new project and write a "Hello World!" program. Make sure it runs :)
+Write a program that prints the current date.
+Write a program that prints the contents of a variable and the variable name for the following data types: int, float, double, boolean, String. Example output: age=35
+Write programs for the following operations for 3 given integer: max, min.
+Day 2
+Write a program that prints the result of the following operations for 2 given integer variables: addition, multiplication, division, modulo. Try the same for 2 float variables and compare the results.
+1073741824 is a power of 2. Write program that prints what is the exponent.
+Write a program which prints "Odd Number" if the int variable “number” is odd, or “Even Number” otherwise
+Write a program which prints "ONE", "TWO",... , "NINE", "OTHER" if the int variable "number" is 1, 2,... , 9, or other, respectively. Use (a) a "nested-if" statement; (b) a "switch-case" statement.
+Write a program that computes the factorial of 10. Use all 3 types of loops.
+Write a program that prints the first number between 123456 and 125000 that divides by 27.
+Write a program that print how many numbers between 123456 and 125000 can be divided by 27.
+Sort the contents of an integer array.
+Given an array of integers find the largest odd number in the array.
+Print the command line arguments received by your program.
+Create an array of Strings containing 10 names. Print the names with their index in the array. Example 1) John Smith 2)Bob Brown etc.
+Day 3
+Write a method that returns the longest String from an array of strings sent as parameter.
+Write a method that returns the first String from a given array of strings, that begins with a given string. Example: ["The", "best", "party", "ever"] is the array and "par" is the given string. The method should return "party".
+Write a method that transforms the string "we#make#great#code#" into "We Make GREAT code".
+Define a class Person with the following attributes : first name, last name, age, address, phone number and email. Write a program that creates an array of persons and displays all the data for the persons in the array.
+Define a class car with the following attributes: model, brand, year, number of km and driver. The driver should be of type Person. Create a program that displays the data of a car in the following format: 
+2006 Toyota Avensis,
+230000 km,
+John Smith, 35 years old
+34rd Pasadena Avenue
+phone: +1303577782
+email: jsmith@email.com
+We consider 2 instances of the Person class to be equal if they have the same email address. Write a method in the Car class with the following prototype : boolean hasSameDriver(Car car);
+Add 2 new methods to the Person class: is Older and isNeighbor (2 Persons are neighbors if they live on the same street). Create an array with instances of the Person class and try to find for the first person all his oldest neighbours.
+Day 4
+Today you will start your first Java project. You will need to apply the knowledge you gained the previous days. You will work on the project you start today in the following week and with each day we will introduce new concepts and techniques. So try to give your best and make an awesome project from the beginning :) .
+
+Geometrixx
+
+Geometrixx is a company specialized in selling geometric shapes. They want to enter into the digital era and start selling their shapes using a specialized software. They want you to help them create an inventory with their existing shapes. The first step will be to create the items they are selling and display the items in the console with all the informations :lenght, widht, radius, color, area, perimeter, price and quality. 
+
+Two shapes of the same type can merge into one shape of the same type with increased quality.
+The shapes need to support basic geometric operations : translation and rotation. A Geometrixx can change it's color, but only with a color from an approved list: pink, purple, blue and grey
+
+For start they need the following shapes:
+1. Circle: A plain old circle. Make sure it is round.
+2. Square: A plain old square.
+3. SuperCircle: It's a circle, but it is SUPER. Of course more expensive than a simple Circle and the area is calculated differently.
+4. OddTriangle: Works like a classic triangle, but when they merge the quality is rounded to the nearest odd number of the highest quality. So merging t1 with quality 1 with t2 with quality 3 gives a quality of 5.
+
+Start working! The guys at Geometrixx want to start testing their digital shapes.
+
+Day 5 ##
+Now that you have learned about inheritance, try to remodel your classes so that you don't have duplicated code.
+
+Use abstract classes and also interfaces. Now that you've finished with the rework, Geometrixx called and aksed to add a new property for all the shapes: creationDate. This information should also appear when you print a shape to the console. Make sure the creationDate is updated when you merge 2 objects.
+
+Day 6
+Now that you have some working shapes, the guys at Geometrixx want to have an inventory with all the available shapes. They need to be able to add new shapes in the invetory, delete from the inventory, update an item from the invetory and search by color, price, quality and type. Put those collections at work.
+
+Day 7
+Geometrixx is impressed with the work you delivered! They have although a problem: they have a newbie in the team and he doesn't understand how the inventory works. He messed up the inventory by introducing wrong data in for the objects: OddTriangle with an even quality, Supercircles at the same price as Circles, Squares without the lenght of the side etc. 
+Help them by preventing this type of situation to occur by putting some exceptions in there. Try to treat as many situations as possible. Use your own exceptions.
+
+Day 8
+There is a new manager at Geometrixx and he is all about files. Everything is in a file from his point of view. So he wants the invetory to be loaded from a .txt file. Each line of the file will describe a shape. The delimiter for the attributes is "#". When the inventory is loaded, the user should be notified by a message stating the total number of shapes loaded and how many of each type.
+
+
+Also when someone searches in the invetory the search result should be outputed to a .txt file. The output file will have a name matching this pattern: 
+geometrix_search_DATE_TIME_NUMBEROFRESULTS.txt
+
+Make sure the manager is happy so you get more projects!
+
+Day 9
+Oh, yeah! This new manager just called. He is impressed by your work so he wants to add new features to the application.
+1. The application will need to read from 3 different inventory files, one by one, and at the end display the total number of lines read from all the files toghether. 2. A new property needs to be introduced for the shapes: category.There can be only 3 categories: Basic, Extended and Composed. 3. Create a Map with the category as key and as value a list with all the shapes in that category. Provide a method that displays all the shapes in a specific category.
+
+Day 10
+You are close to finish this project! Geometrixx is growing into a corporation. So they need an enterprise application. Change the existing invetory application to store the inventory in a database and search in the database with SQL when someone wants to find a shape. Do not load all the shapes in the application memory!
+
+Steps to start: Install a MySQL database server and MySQL Workbench. Download the JDBC MySQL Connector and add it to your projects classpath.

@@ -1,0 +1,83 @@
+public class Magazin {
+	public static boolean disponibil(int cant) {
+		if (cant == 0) {
+			return (false);
+		}
+		return (true);
+	}
+
+	public static double tva(double pret) {
+
+		return ( (16.00 / 100.00 ) * pret);
+	}
+
+	
+	public static void sort(double pret[], String names[])
+{  
+		double aux = 0;
+		String name_aux = null;
+		for(int i = 0; i < 5; i++)
+		{	
+			for (int j = i + 1 ; j < 5; j++)
+			{
+				if(pret[i] >  pret[j])
+				{
+				aux = pret[j];
+				pret[j] = pret [i];
+				pret[i] = aux;
+				name_aux = names[j];
+				names[j] = names[i];
+				names[i] = name_aux;
+				}
+		}
+		}
+ }
+	 
+	public static double val(int cant, double pret) {
+
+		double val = cant * pret;
+
+		return (val);
+	}
+
+	public static double totalVal(int cant[], double pret[]){
+		double suma = 0;
+		double a[] = new double[5];
+		for (int i = 0; i < 5; i++)
+		{		
+			a[i] = val(cant[i], pret[i]);
+			suma = suma + a[i];
+		}
+		return (suma);
+	}
+	public static void main(String[] args) {
+
+		String names[] = new String[] { "caise", "mere", "capsuni", "pere",
+				"banane" };
+		int cantitate[] = new int[] { 65, 0, 0, 53, 2 };
+		double preturi[] = new double[] { 6.5, 2.5, 8.0, 11.2, 3.6 };
+
+		for (int i = 0; i < 5; i++)
+			System.out.println(names[i] + "		" + cantitate[i] + "		"
+					+ preturi[i]);
+
+		for (int i = 0; i < 5; i++) 
+		{
+			if (disponibil(cantitate[i])== false)
+				System.out.println(names[i] + " is not available");
+		}
+
+		for (int i = 0; i < 5; i++) 
+		{	
+			double a = tva(preturi[i]);
+			System.out.println("T.V.A. for " + names[i]  + " is " + a);
+		} 
+				double total = totalVal(cantitate, preturi);
+		
+		System.out.println("Valoarea totala a stocului este = " + total );
+		
+		sort(preturi,names);
+		for(int i = 0; i<5; i++)
+		System.out.println(names[i] + "	" + preturi[i] );
+	}
+}

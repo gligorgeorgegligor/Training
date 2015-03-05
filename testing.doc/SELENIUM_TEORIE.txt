@@ -1,0 +1,507 @@
+selenium
+
+Search
+Home
+All
+Files
+New
+Rename
+Edit
+History
+Prerequisites
+install Firefox
+install Selenium IDE (plugin for firefox)
+install Firebug (plugin for firefox)
+download selenium webdriver jar file
+Selenium Introduction
+About Selenium
+Selenium is a software testing framework for the web that facilitates the automation of browsers. The Selenium project produces various tools for automation testing such as Selenium IDE, Selenium Remote Control (RC), Selenium Grid and Selenium 2.0 & WebDriver. Learning all the tools will give you many different options for approaching different automation problems. The entire suits of tools result in a rich set of testing functions specially geared to the needs of testing of web application of all types.
+
+Why Selenium
+Selenium is an open source tool with Corporate backing.
+The tests can then be run against most modern web browsers.
+Selenium deploys on Windows, Linux, and Macintosh platforms.
+It allows recording, editing, and debugging tests.(Selenium IDE, we will use it only to verify our locators)
+Selenium has the support of some of the largest browser vendors who have taken (or are taking) steps to make Selenium a native part of their browser.
+Selenium Webdriver
+The primary new feature in Selenium 2.0 is the integration of the WebDriver API. WebDriver is designed to provide a simpler, more concise programming interface in addition to addressing some limitations in the Selenium-RC API. It enables you to use a programming language to write test scripts in different programming languages like html, Java, .net , perl, ruby and which enables you to use conditional operations, looping and other programming concepts which makes you test script robust. Selenium-WebDriver was developed to better support dynamic web pages where elements of a page may change without the page itself being reloaded. WebDriver’s goal is to supply a well-designed object-oriented API that provides improved support for modern advanced web-app testing problems.
+
+WebDriver and Browser Commands
+Selenium Webdrier API provides the WebDriver interface. Using this interface we instantiate (start) a web browser on our local machine. All you have to do is:
+
+WebDriver driver = new FirefoxDriver(); - obviously, this will start a firefox browser (if you have it installed on your machine).
+
+From this moment on, until the end of the java program, the driver object that you just created will control (drive) your browser. Now you can apply different commands (methods) on this object, for different results. See below.
+
+Get
+Purpose: This command is used to open a new web page in the current browser.
+
+Command: driver.get(URL);
+
+Parameters: url – The URL to load. It is best to use a fully qualified URL
+
+Example: driver.get("http://www.somesite.com");
+
+Get title
+Purpose: This command is used to get the title of the current page.
+
+Example: driver.getTitle();
+
+Get current URL
+Purpose: This command is used to get the URL of the page currently loaded in the browser.
+
+Example: driver.getCurrentUrl()
+
+Get page source
+Purpose: This command is used to get the source of the last loaded page.
+
+Example: driver.getPageSource();
+
+NOTE: ALL GET COMMANDS RETURN INFORMATION AS STRING
+
+Set window size commands
+Purpose: Change the window size of the current browser
+
+Example: driver.manage().window().setSize(new Dimention(width, height));
+
+Refresh
+Purpose: This command is used to refresh the current browser.
+
+Example: driver.navigate().refresh();
+
+Close
+Purpose: This command is used to close the current window of the browser, if it’s the last window it will close the browser.
+
+Example: driver.close();
+
+Quit
+Purpose: This command is used to quit the browser and all the opened windows in the browser.
+
+Example: driver.quit();
+
+WebElement and Element locators
+The next thing you want to do is to interact with a web page. You need to locate an element before interacting with it and locating elements can be done on the WebDriver instance itself or on a WebElement. Webdriver gives us “Find Element” and “Find Elements” methods to locate elements on the web page.
+
+The difference between “Find Element” and “Find Elements” method is that the first returns a WebElement object otherwise it throws an exception (NoSuchElementExeption) and the latter returns a list of WebElements. It can return an empty list if no DOM elements match the query. The “Find” methods take a locator or query object called “By”. “By” strategies are:
+
+By ID - most widely used and safe strategy (considering elements ID's should be unique on a page).
+By Name - same as ID.
+By Class Name - good to use if class name is unique. Experience will teach you that in most cases it is NOT.
+By Tag Name - highly ineffective, appropriate only for simpler pages, for example, if the page has a single tag of a type.
+By Link Text - generally very effective, most links text is unique. Do not use if it's not.
+By Partial Link Text - same as link text, but can accept partial links.
+By XPATH - widely used when above methods fail.
+By CSS - same as XPATH. In general, choosing between XPATH and CSS is the programmer's choice.
+Examples:
+
+WebElement element1 = driver.findElement(By.id("someID"));
+
+WebElement element2 = driver.findElement(By.cssSelector("someCSSExpression"));
+
+WebElement element3 = driver.findElement(By.xpath("someXPATHExpression"));
+
+Now let's explain how it works: First, you declare a WebElement object, then you apply the findElement() method on the driver you started. Find element expects a locating technique as parameter, so you tell it to search By.someTechnique, which also expects an expression, as string. This expression can be the element ID, some XPATH, CSS, or whatever technique you choosed. If a corresponding element is found, then the new WebElement created will be associated with the real element from the web page. From now one, you can apply different methods on that new WebElement object, to interact with it.
+
+IMPORTANT: WebElements object names must always be related to the nature of the element from the page. For example, a login button element should be named loginButton. A link used to navigate to some other page should be named goSomeOtherPageLink. A text field that accepts usernames (in a sign up form for example) should be named usernameTxtBox. A div that contains an login error message should be named loginErrMsgDiv. This will greatly improve code readability. It's easier to understand what the following script does:
+
+usernameTxtbox.sendKeys("paul"); passwordTxtBox.sendKeys("rules"); submitLoginButton.click();
+
+in comparison with:
+
+el1.sendKeys("Paul"); el2.sendKeys("stillRules"); el3.click(); DON'T DO THIS! (no really, don't, I get angry and dangerous)
+
+WebElement commands and advanced browser interactions
+Implicit wait
+
+By now you should have seen that the selenium script runs pretty fast. The web servers are not always responding in time, so you might be trying to interact with an element that is not yet displayed on page. Implicit wait tells the driver (browser) to wait for a maximum number of time for the element to appear. If it appears, it will proceed with the execution (will not constantly wait for that amount of time, like a thread sleep does).
+
+Example: driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+Use this imediately after starting the browser.
+
+Basic WebElement interactions
+
+Basically this are the most important methods that replicate how a user interacts with an element on a web page. Some of these are self explanatory. There are more, feel free to apply them on different webelements and see what they do.
+
+click() - clicks on desired element.
+clear() - clears text from element (text fields).
+sendKeys("some string") - inputs text on desired element
+submit() - submits the form in which the element is contained.
+findElement(By by) - same as the one applyed on driver.
+getText() - returns text from a webelement.
+getAttribute("some attribute") - returns the value of an attribute.
+Selenium WebDriver Switch Window Commands
+
+Some web applications have many frames or multiple windows. Selenium WebDriver assigns an alphanumeric id to each window as soon as the WebDriver object is instantiated. This unique alphanumeric id is called window handle. Selenium uses this unique id to switch control among several windows. In simple terms, each unique window has a unique ID, so that Selenium can differentiate when it is switching controls from one window to the other.
+
+GetWindowHandle Command
+Purpose: To get the window handle of the current window.
+
+Example: String handle= driver.getWindowHandle();//Returns a string of alphanumeric window handle
+
+GetWindowHandles Command
+Purpose: To get the window handle of all the current windows.
+
+Example: Set handle= driver.getWindowHandles();//Returns a set of window handles
+
+SwitchTo Window Command
+Purpose: WebDriver supports moving between named windows using the “switchTo” method.
+
+Example: driver.switchTo().window("windowName or windowHandle");
+
+You can also interate over a set of window handles.
+
+SwitchTo Frame Command
+Purpose: WebDriver supports moving between named frames using the “switchTo” method.
+
+Example: driver.switchTo().frame("frameName");
+
+SwitchTo Alert Command
+Purpose: WebDriver supports moving between named alerts using the “switchTo” method. After you’ve triggered an action that opens an alert, you can access the alert and it will return the currently open alert object. With this object you can now accept, dismiss, read its contents or even type into a prompt. This interface works equally well on alerts, confirms, and prompts.
+
+Example: Alert alert = driver.switchTo().alert();
+
+Explicit waits
+
+FluentWait Command
+Purpose: Each FluentWait instance defines the maximum amount of time to wait for a condition, as well as the frequency with which to check the condition. Furthermore, the user may configure the wait to ignore specific types of exceptions whilst waiting, such as NoSuchElementExceptions when searching for an element on the page.
+
+Example: Waiting 30 seconds for an element to be present on the page, checking for its presence once every 5 seconds.
+
+Wait wait = new FluentWait(driver)
+
+.withTimeout(30, SECONDS)
+
+.pollingEvery(1, SECONDS)
+
+.ignoring(NoSuchElementException.class);
+
+WebElement foo = wait.until(new Function() {
+
+public WebElement apply(WebDriver driver) {
+
+return driver.findElement(By.id("foo"));
+
+}
+
+});
+You can define new Function() so that it will fit any need you might have, like waiting until an element value changes to some expected text or some element text changes to something you expect. (very useful on heavy javascript applications)
+
+ExpectedConditions Command
+Purpose: Models a condition that might reasonably be expected to eventually evaluate to something that is neither null nor false.
+
+Example:
+
+WebDriverWait wait = new WebDriverWait(driver, 10);
+
+WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("someid")));
+NOTE: There are many very useful static methods on ExpectedContitions class, beside elementToBeClickaable(). Feel free to check them out.
+
+PageLoadTimeout Command
+Purpose: Sets the amount of time to wait for a page load to complete before throwing an error. If the timeout is negative, page loads can be indefinite.
+
+Example: driver.manage().timeouts().pageLoadTimeout(100, SECONDS);
+
+SetScriptTimeout Command
+Purpose: Sets the amount of time to wait for an asynchronous script to finish execution before throwing an error. If the timeout is negative, then the script will be allowed to run indefinitely.
+
+Example: driver.manage().timeouts().setScriptTimeout(100,SECONDS);
+
+Selecting Dropdown/Multiple Select Box
+
+It is just an ordinary operation like selecting any other type of element on a webpage. You can choose it by ID, Name, Css & Xpath etc. But to perform any action on this element it is required to import import org.openqa.selenium.support.ui.Select' package and to use it we need to create a new select object of class select.
+
+Example:
+
+Select oSelection = new Select(driver.findElement(By.id(id)));
+Note: Select class only works for elements with select tags
+
+Selecting an option using 'selectByVisibleText'.It is very easy to choose or select an option given under any dropdowns and multiple selection boxes with selectByVisibleText method.
+
+Example:
+
+Select oSelection = new Select(driver.findElement(By.id(id)));
+oSelection.selectByVisibleText(text);
+Selecting an option using 'selectByIndex'. It is almost the same as selectByVisibleText but the only difference here is that we provide the index number of the option here rather the option text.
+
+Example:
+
+Select oSelection = new Select(driver.findElement(By.id(id)));
+oSelection.selectByIndex(index);
+Selecting an option using 'selectByValue'. It is again the same what we have discussed earlier, the only difference in this is that we need to provide the value of the option rather the option text.
+
+Example:
+
+Select oSelection = new Select(driver.findElement(By.id(id)));
+oSelection.selectByValue(value);
+Deselect methods. This only works on Multiple selection boxes. If in case you want to deselect any selected option and that can be done with either deselectAll(), deselectByIndex, deselectByValue and deselectByVisibletext.
+
+Example:
+
+Select oSelection = new Select(driver.findElement(By.id(id)));
+    oSelection.deselectAll(); 
+    oSelection.deselectByIndex(index);
+    oSelection.deselectByValue(value);
+    oSelection.deselectByVisibleText(text);
+Advanced user interactions (Drag And Drop, Move to element, etc)
+
+Let's say we have a web application where we need to drag an item from one location to another location. These kinds of complex actions are not available in basic element properties. Automating rich web application is interesting, as it involves advanced user interactions. Thankfully Selenium has provided a separate 'Actions' class to handle these advanced user interactions. How it works:The action chain generator implements the Builder pattern to create a Composite Action containing a group of other actions. This should ease building actions by configuring an Actions chains generator instance and invoking its build( ) method to get the complex action.
+
+Example:
+
+Actions builder = new Actions(driver);
+Action moveToElement = builder.moveToElement(someWebelement).build();
+moveToElement.perform();
+IMPORTANT: MAKE SURE YOU IMPORT THE org.openqa.selenium.interactions.Action/Actions CLASSES (not java.swing or something else...) Builder object (from the example above) has many methods for creating different and more complex actions. You can chain as many as you want.
+
+Javascript Executor
+
+JavaScript is the preferred language inside the browser to interact with HTML dom. This means that a Browser has JavaScript implementation in it and understands the JavaScript commands. You can disable it using browser options in your browser. JavaScript was also the language that was used by earlier Selenium versions, it is still used by Selenium webdriver to perform some actions. For e.g. Selenium has Xpath implemented in JavaScript for IE, to overcome the lack of Xpath engine in IE. Understanding JavaScript is fun and it can enable you to do lot of cool things that otherwise you may find tricky. Lets understand how Webdriver gives you a method called executeScript which executes the JavaScript in context of the loaded browser page.
+
+What can JavaScript do for us? Well practically anything you want to do in browser, but most important for us is changing attributes of the elements. This means adding, removing, updating attributes and/or attributes values.
+
+Example:
+
+JavascriptExecutor executor = (JavascriptExecutor)driver;
+executor.executeScript("document.getElementByID('//id of element').setAttribute('attr', '10')";);
+NOTE: search the web for more info to suite your needs.
+
+Finding Broken links using Selenium and Java
+
+Finding broken links on a web page can be classified into two steps
+
+Finding all the links on the page.
+Iteratively checking the links if they are broken.
+All the links usually are in image  and anchor tags on a web page. Also all links are mentioned as href attribute of the element tag. For example: No work. Verifying that the link is ok can be done using Java's HttpURLConnection class. This class is used to make HTTP requests to the webserver hosting the links extracted in step 1. The basic idea is to make an HTTP request to the urls extracted in step 1 and see the response returned by the server. Based on the response we can figure out if the link is broken or not. I will present to you very a minimal implementation of the HTTP request method. You can modify this to suite your needs. It's fairly simple, but take you time to understand how this method works and what it does.
+
+public static String isLinkBroken(URL url) throws Exception{
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    try  {
+        connection.connect();
+        String response = connection.getResponseMessage();
+        int responseCode = connection.getResponseCode();
+        connection.disconnect();
+        return response + " " + responseCode;
+    }
+    catch(Exception exp) {
+        return exp.getMessage();
+    }
+}
+Taking screen shot in selenium
+
+Sometimes you want to see exactly what happens during a test or maybe you want to see what happened in the browser when a the test failed. To be able to do this, selenium provides a way of capturing a screen shot of the browser during the test.
+
+File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+// Now you can do whatever you need to do with it, for example copy somewhere
+FileUtils.copyFile(scrFile, new File("c:\\tmp\\screenshot.png"));
+TestNG
+--- download from : https://www.versioneye.com/java/org.testng:testng/6.8.8 ---
+
+TestNG eliminates most of the limitations of the older framework and gives the developer the ability to write more flexible and powerful tests with help of easy annotations, grouping, sequencing & parameterizing.
+
+Benefits of TestNG
+
+There are number of benefits of TestNG but from Selenium perspective, major advantages of TestNG are :
+
+It gives the ability to produce HTML Reports of execution
+Annotations made testers life easy
+Test cases can be Grouped & Prioritized more easily
+Parallel testing is possible
+Generates Logs
+Data Parameteriz ation is possible
+Test Case Writing
+
+Writing a test in TestNG is quite simple and basically involves following steps:
+
+Write the business logic of the test
+Insert TestNG annotations in the code
+Add the information about your test (e.g. the class names, methods names, groups names etc?) in a testng.xml file
+Run TestNG
+Annotations in TestNG
+
+@BeforeSuite: The annotated method will be run before all tests in this suite have run.
+
+@AfterSuite: The annotated method will be run after all tests in this suite have run.
+
+@BeforeTest: The annotated method will be run before any test method belonging to the classes inside the tag is run.
+
+@AfterTest: The annotated method will be run after all the test methods belonging to the classes inside the tag have run.
+
+@BeforeGroups: The list of groups that this configuration method will run before. This method is guaranteed to run shortlybefore the first test method that belongs to any of these groups is invoked.
+
+@AfterGroups: The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.
+
+@BeforeClass: The annotated method will be run before the first test method in the current class is invoked.
+
+@AfterClass: The annotated method will be run after all the test methods in the current class have been run.
+
+@BeforeMethod: The annotated method will be run before each test method.
+
+@AfterMethod: The annotated method will be run after each test method.
+
+@Test: The annotated method is a part of a test case.
+
+Benefits of using annotations
+
+TestNG identifies the methods it is interested in by looking up annotations. Hence method names are not restricted to any pattern or format.
+We can pass additional parameters to annotations.
+Annotations are strongly typed, so the compiler will flag any mistakes right away.
+READ IN MORE DETAIL ON TESTNG HOMEPAGE : http://testng.org/doc/documentation-main.html
+
+Assertions
+
+In computer programming, an assertion is a predicate (a true–false statement) placed in a program to indicate that the developer thinks that the predicate is always true at that place. If an assertion evaluates to false at run-time, an assertion failure results, which typically causes execution to abort.
+
+Testng provides us with different assertion methods, but the most commonly used are:
+
+assertEquals(): verifies equality. Example : assertEquals("aString", "anotherString") - this will fail, as the two strings are not equal.
+assertTrue(): verifies if a boolean expression is either true or false. Returns succes if true.
+assertFalse() : same as assertTrue(), but returns succes if expression is false.
+NOTE: There are some other, feel free to try them out.
+
+Hamcrest Matchers
+Go to the following link and read about Hamcrest Matchers.
+
+https://code.google.com/p/hamcrest/wiki/Tutorial
+
+Selenium Grid
+http://www.seleniumhq.org/docs/07_selenium_grid.jsp
+
+After you configure a selenium grid, in order to run your test(s) on that grid, you must use the RemoteWebDriver implementation.
+
+WebDriver driver = new RemoteWebDriver(
+          new URL("http://localhost:4444/wd/hub"), 
+          DesiredCapabilities.firefox());
+Page Objects
+https://code.google.com/p/selenium/wiki/PageObjectshttps://code.google.com/p/selenium/wiki/PageObjects
+
+PageFactory
+https://code.google.com/p/selenium/wiki/PageFactory
+
+
+
+
+SELENIUM EXERCITII
+
+Day 1
+Write a java program that starts then closes a Firefox browser. Print to see what it's doing...or you could miss it.
+Update the program so that it opens Google page and prints it's title and URL.
+Your tests should always verify that you are on the correct page. Throw an IllegalStateException if the page title from exercise 2 is not "Google". Change the URL and run to see that it works. [OPTIONAL] Create your own exeption to be thrown when page title is not the one expected.
+Update your code so that now your browser's window size is 1440x900. Update again to open in full screen.
+Run your program in Chrome.
+Day 2
+Today you will be playing with element locators. Open Firefox browser and Selenium IDE. You will navigate manually to different pages, then think what elements will need to be located in order to automate that page then locate them using Selenium IDE. Try to use different locating techniques for each element found (XPATH, CSS, LINK TEXT, ID, NAME) .
+
+https://myline-eon.ro/login -- locate 10 elements.
+http://www.kweekweek.com/ -- locate 20 elements.
+http://www.lufthansa.com/ -- locate 30 elements.
+Go to http://testdotmanager.loki.pitechnologies.ro and automate the login form. Input a valid/invalid username and password and attept to login. Print "Login success!" if login is successful or "Login failed!" if it fails.
+NOTE: Use sendKeys(), clear(), click(), submit() methods
+
+Day 3
+Now you have the necessary skills to locate web elements. User WebDriver API to do the following:
+
+Write a program that opens a browser and goes to http://adam.goucher.ca/parkcalc/. Calculate the cost of valet parking option from 8:30 AM to 14:30 PM on 03/02/2015. Print to console the total cost and number of hours.
+Repeat the test, but now, when choosing the start and end dates, use the date picker. (You can choose whatever inputs you want).
+Go to http://the-internet.herokuapp.com/javascript_alerts. There are 3 buttons and a Result text that changes depending on your actions. Print 3 lines in console, one for each alert button, each line shoult contain the alert text and the result text that appeared after.
+Go to http://demoqa.com/droppable/ and perform a drag and drop operation. After you perform the action print "Succes!" if the text changes to "Dropped!".
+Go to http://demoqa.com/resizable/ and resize the resizable element. Make it bigger by 200 pixels on x axis and 300 pixels on y axis. Print it's x/y coordonates before and after the resize. If they are the same, you are doing something wrong.
+Go to http://demoqa.com/tooltip/ and print the tooltip text that apprears when mouse is over the 'age' field.
+Day 4
+Go to http://the-internet.herokuapp.com/dynamic_loading/2. Click on start and use WebDriverWait to wait for the text and then print it.
+Go to http://the-internet.herokuapp.com/dynamic_controls. If the checkbox is not checked, remove i, print the text, then add it, print the text, check it and print "success!" if it is checked. Use FluentWait to wait for it to disappear/appear.
+Go to http://the-internet.herokuapp.com/upload. Upload a valid file then print the file's name and message that appears.
+Go to http://the-internet.herokuapp.com/jqueryui/menu. Enable the Disabled button using Selenium JavascriptExecutor, then print the text that you should not have seen.
+Go to http://testdotmanager.loki.pitechnologies.ro. You must login and then verify the response message and code of all links that have a 'href' attribute. Use the isLinkBroken() method provided in the selenium training documentation. Print the link, response message and response code for all links. You must arrange you code in the following manner:
+separate methods for : setting up the browser, accessing desired url (with parameter), logging in (with parameters for user and pass), getting all the links.
+main method.
+BONUS. Go to http://testdotmanager.loki.pitechnologies.ro/login. Write a program that automates the following.
+
+Login with your received user. Click on Social link (below the holidays form). This will open a new window. Switch focus to this window, go to employees tab, search yourself, get your email address from the page and save it in a string, then switch back to the dotmanager page, logout, type your email in the login page username field and also the password field, then press login. Print the error message in console.
+
+Day 5
+1.Write a test class that opens http://mediawiki.loki.pitechnologies.ro/index.php?title=Main_Page. Go to Testing, Automated Testing and verify that the Locators table 1 0 2.pdf is on the page.
+
+use @BeforeMethod, @AfterMethod and @Test annotations
+use testng Assert class to verify that the pdf is there
+modify your test so that the assert fails
+implement taking a screenshot on test failure (in @AfterMethod) using testng's ITestResult interface. The name of the file (image) it saves must be the test method's name and the exact date and time when it was created. Example : testMethodName_05_02_2015-14_50_59.png
+create a testng.xml suite file and use it to run your test class.
+2.Create a string. Assert that:
+
+string is instance of String class
+it contains $someString
+is equal to $someOtherString
+is not equal to $someOtherString
+is equal to $someOtherString ignoring cases
+is equal to $someOtherString ignoring whitespaces
+it starts with $someString
+it contains $someString
+it ends with $someString
+is not empty or null
+3.Create a list of strings. Assert that:
+
+the list contains $someItem.
+the list does not contain $someItem
+the list contains $someItem, $someOtherItem.
+list size is greater than $someNumber and less or equal than $someOtherNumber.
+one item in the list starts with $someText and one of the items ends with $someOtherText.
+all elements in list contain some $someString.
+at least one of the following two conditions are met: list size is $someNumber or list size is $someOtherNumber
+the list contains all it's elements
+the list contains all it's elements in any order.
+create another list, but with no elements (empty). Assert that it is empty.
+4.Create a new HashMap. Assert that
+
+map has $someKey
+map has $someValue
+map has $someEntry (combination of key and value)
+NOTE FOR ex. 2,3 and 4: Create a single test class and inside it 3 test methods (one for each exercise). Modify the assert parameters ($some...) so that each assert will pass, then fail, so that you see what happens.
+
+Day 6
+1.Start a selenium hub and a node on your local machine. Use RemoteWebDriver to run a selenium test using Selenium Grid. (Choose whatever test you like)
+
+2.Repeat the exercise, but this time run your test on the PC of the person sitting across from you.
+
+Day 7
+1.Create a new MAVEN project. Name it DotManagerAutomation
+
+in pom.xml file, add dependencies for selenium, testng and hamcrest matchers.
+implement testing framework for Dot Manager application
+Minimum requirements
+
+--------------------------Logs-------------------------
+
+create log - also check color code
+create log on interval
+create log incomplete profile - check color code
+create log overtime - check color code
+create multiple logs on the same day (check max hours)
+create new log by clicking on existing log - check autocomplete
+check new log error messages(company, project, task, hours, description missing)
+check new log hours validation (different invalid hours)
+check log hours (completed / total) on log creation
+check report navigation on next and previous months
+check cancel on log creation (must empty the fields)
+edit log
+delete log
+delete logs multiple days
+check +7 days link
+check all links respond 200 OK
+--------------------------HOLIDAYS---------------------------
+
+create all types of holidays
+edit holiday (change date)
+edit holiday (change type)
+delete holiday
+check create holiday error messages in all situations (start date-end date posibilities invalid input, missing required)
+check remaining days update on --concediu odihna--, but not on other types
+check --concediu odihna-- on interval - remaining days should not count weekends or legal celebrations
+check holiday over existing holiday
+check holiday over existing log
+Framework requirements
+
+must run in Chrome and Firefox
+must change easely between environments (loki, prod)
+must take screen shots on test failure
+must have reporting
