@@ -1,0 +1,89 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dot_Manager">
+
+    <listeners>
+         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+
+    <test name="test1">
+        <classes>
+            <class name="com.PitechnologiesTests.logintest.LoginPositiveTest"/>
+        </classes>
+    </test>
+
+    <test name="test2">
+        <classes>
+            <class name="com.PitechnologiesTests.logintest.LoginNegativeTest"/>
+        </classes>
+    </test>
+
+    <test name="test3">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.linktest.AllLinkTest"/>
+        </classes>
+    </test>
+
+    <test name="test4">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.linktest.ExternalLinksTest"/>
+        </classes>
+    </test>
+
+    <test name="test5">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.DeleteHolidayTest"/>
+        </classes>
+    </test>
+
+    <test name="test6">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.PositiveHolidayTest"/>
+        </classes>
+    </test>
+
+    <test name="test7">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.NegativeHolidayTest"/>
+        </classes>
+    </test>
+
+    <test name="test8">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.AllTypesOfHolidaysTest"/>
+        </classes>
+    </test>
+
+    <test name="test9">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.EditHolidayTest"/>
+        </classes>
+    </test>
+
+    <test name="test10">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.logtests.EditLogTest"/>
+        </classes>
+    </test>
+
+    <test name="test11">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.logtests.LogoutSuperspeedPageTest"/>
+        </classes>
+    </test>
+
+    <test name="test12">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.logtests.PositiveLogTest"/>
+        </classes>
+    </test>
+
+    <test name="test13">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.logtests.NegativeLogTest"/>
+        </classes>
+    </test>
+
+
+
+</suite>

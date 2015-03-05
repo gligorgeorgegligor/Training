@@ -1,0 +1,57 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dot_Manager">
+
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+
+    <test name="test1">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHoliday1Test"/>
+        </classes>
+    </test>
+
+    <test name="test2">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHoliday2Test"/>
+        </classes>
+    </test>
+
+    <test name="test3">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHolidayTest"/>
+        </classes>
+    </test>
+
+    <test name="test4">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectLogTest"/>
+        </classes>
+    </test>
+
+    <test name="test5">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectLog1Test"/>
+        </classes>
+    </test>
+
+    <test name="test6">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHoliday3Test"/>
+        </classes>
+    </test>
+
+    <test name="test7">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHolidayLastMonth"/>
+        </classes>
+    </test>
+
+    <test name="test8">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.defectstest.DefectHolidayYesterday"/>
+        </classes>
+    </test>
+
+</suite>

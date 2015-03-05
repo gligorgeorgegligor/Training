@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dot_Manager">
+
+
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+
+    <test name="Write new post" preserve-order="true">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.EditHolidayTest">
+                <methods>
+                    <include name="editHolidayChangeType" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

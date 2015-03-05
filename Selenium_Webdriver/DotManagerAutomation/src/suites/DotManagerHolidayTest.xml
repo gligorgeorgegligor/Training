@@ -1,0 +1,39 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Dot_Manager">
+
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+
+<test name="test1">
+    <classes>
+        <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.DeleteHolidayTest"/>
+    </classes>
+</test>
+
+<test name="test2">
+    <classes>
+        <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.PositiveHolidayTest"/>
+    </classes>
+</test>
+
+<test name="test3">
+    <classes>
+        <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.NegativeHolidayTest"/>
+    </classes>
+</test>
+
+    <test name="test4">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.AllTypesOfHolidaysTest"/>
+        </classes>
+    </test>
+
+    <test name="test5">
+        <classes>
+            <class name="com.PitechnologiesTests.superspeedpagetest.holidaytests.EditHolidayTest"/>
+        </classes>
+    </test>
+
+</suite>
