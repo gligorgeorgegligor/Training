@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Ex_01" parallel="methods">
+
+<test name="test1">
+    <classes>
+        <class name="Day_5_Test.Ex1Test"/>
+    </classes>
+</test>
+
+<test name="test2">
+    <classes>
+        <class name="Day_5_Test.Ex2_3_4Test"/>
+    </classes>
+</test>
+
+</suite>

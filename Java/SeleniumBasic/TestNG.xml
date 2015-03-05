@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression">
+
+    <test name="test1">
+        <classes>
+            <class name="Day_04.Bonus"/>
+        </classes>
+    </test>
+
+    <test name="test2">
+        <classes>
+            <class name="Day_04.Ex_05"/>
+        </classes>
+    </test>
+
+    <test name="test3">
+        <packages>
+            <package name="Day_04"/>
+        </packages>
+    </test>
+
+</suite>
